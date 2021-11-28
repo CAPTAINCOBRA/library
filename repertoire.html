@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
+      rel="stylesheet"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Oleo+Script:wght@700&family=Quicksand:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Goals</title>
+    <link rel="stylesheet" href="shared.css" />
+    <link rel="stylesheet" href="repertoire.css" />
+  </head>
+  <body>
+    <header>
+      <div id="page-logo">
+        <a href="/index.html">Bucket List</a>
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/add-book.html">Add Book</a>
+          </li>
+          <li>
+            <a href="https://contact-ekansh.herokuapp.com/">Contact Us</a>
+          </li>
+          <li><a href="https://github.com/CAPTAINCOBRA">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div id="rooty"></div>
+    </main>
+    <div id="root"></div>
+
+    <footer>
+      <ul>
+        <li>
+          <a href="https://www.instagram.com">
+            <img src="images/icons/insta.png" alt="Instagram logo"
+          /></a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com">
+            <img src="images/icons/facebook.png" alt="Facebook logo"
+          /></a>
+        </li>
+      </ul>
+    </footer>
+    <!-- <script src="jquery-3.5.1.min.js"></script> -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script> -->
+    <script type="module">
+      //-----------------Firebase Config---------------------------------
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyAwumkhm8FXf9gqxJamWDfKB2810--fOxk",
+        authDomain: "library-83403.firebaseapp.com",
+        databaseURL:
+          "https://library-83403-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "library-83403",
+        storageBucket: "library-83403.appspot.com",
+        messagingSenderId: "801479317930",
+        appId: "1:801479317930:web:4dcf61be9e2f45d44133d3",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import {
+        getDatabase,
+        ref,
+        set,
+        child,
+        update,
+        remove,
+        get,
+      } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
+
+      const db = getDatabase();
+      //------------------References---------------------------------------
+      const getData = () => {
+        const appl = document.getElementById("root");
+        const container = document.createElement("div");
+        container.setAttribute("class", "container");
+        appl.appendChild(container);
+
+        const app2 = document.getElementById("rooty");
+
+        // let loader = `<div class="boxLoading"><h1>Loading</h1></div>`;
+        let loader = `
+        <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Loading...
+      </button>`;
+        const waiter = document.createElement("div");
+        waiter.setAttribute("class", "waiter");
+        waiter.innerHTML = loader;
+        // waiter.appendChild(loader); //Wont work because it is a string
+        app2.appendChild(waiter);
+
+        const containery = document.createElement("div");
+        containery.setAttribute("class", "container");
+        app2.appendChild(containery);
+        const cul = document.createElement("ul");
+
+        const dbref = ref(db);
+
+        get(child(dbref, "/books")).then(function (snapshot) {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            //
+            data.forEach((book) => {
+              //
+
+              const cli = document.createElement("li");
+              const cimg = document.createElement("img");
+              const div1 = document.createElement("div");
+              div1.setAttribute("class", "item-content");
+              const div2 = document.createElement("div");
+              const div3 = document.createElement("div");
+              div3.setAttribute("class", "actions");
+              // const ca = document.createElement("a");
+              // div3.appendChild(ca);
+              const ca1 = document.createElement("a");
+              const cimg1 = document.createElement("img");
+              cimg1.setAttribute("src", "images/icons/amazon.png");
+              cimg1.setAttribute("alt", "amazon");
+              cimg1.setAttribute("class", "small-icon");
+              ca1.appendChild(cimg1);
+              var url = "https://www.amazon.com/s?k=" + book.name;
+              ca1.setAttribute("href", url);
+              ca1.setAttribute("target", "_blank");
+
+              const ca2 = document.createElement("a");
+              const cimg2 = document.createElement("img");
+              cimg2.setAttribute("src", "images/icons/wiki.png");
+              cimg2.setAttribute("alt", "wiki search");
+              cimg2.setAttribute("class", "small-icon");
+              ca2.appendChild(cimg2);
+              var url1 = "https://en.wikipedia.org/wiki/" + book.name;
+              ca2.setAttribute("href", url1);
+              ca2.setAttribute("target", "_blank");
+
+              div3.appendChild(ca2);
+              div3.appendChild(ca1);
+
+              const ch2 = document.createElement("h2");
+              ch2.textContent = book.name;
+
+              const ch4 = document.createElement("h4");
+              ch4.textContent = book.author;
+
+              // ca.textContent = "Buy";
+              // ca.setAttribute("href", book.link);
+              cimg.setAttribute("src", book.image);
+
+              const cp = document.createElement("p");
+              book.description = book.description.substring(0, 300);
+              cp.textContent = book.description;
+
+              div2.appendChild(ch2);
+              div2.appendChild(ch4);
+              div2.appendChild(cp);
+              div1.appendChild(div2);
+              div1.appendChild(div3);
+              cli.appendChild(cimg);
+              cli.appendChild(div1);
+              cul.appendChild(cli);
+              // containery.removeChild(loader);
+              // app2.removeChild(loader);
+              // app2.innerHTML = "";
+
+              containery.appendChild(cul);
+
+              //
+              const card = document.createElement("div");
+              card.setAttribute("class", "card");
+
+              const h1 = document.createElement("h1");
+              h1.textContent = book.name;
+
+              const p = document.createElement("p");
+              p.textContent = `${book.description}...`;
+
+              const div = document.createElement("div");
+              div.setAttribute("class", "imgDiv");
+
+              const img = document.createElement("img");
+              img.src = book.image;
+              div.appendChild(img);
+
+              container.appendChild(card);
+              card.appendChild(h1);
+              // card.appendChild(img);
+              card.appendChild(div);
+              card.appendChild(p);
+            });
+            //
+            app2.removeChild(waiter);
+            console.log(data);
+          } else {
+            console.log("No data found");
+          }
+          // console.log(snapshot.val());
+        });
+      };
+
+      $(document).ready(function () {
+        console.log("ready!");
+        getData();
+      });
+
+      // document.getElementById("show").addEventListener("click", getData);
+
+      // var instBtn = document.getElementById("instBtn");
+
+      //--------------------------------------------------------------------
+
+      //---------------Add Event Listener------------------------------------
+      // instBtn.addEventListener("click", InsertData);
+    </script>
+  </body>
+</html>
