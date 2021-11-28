@@ -92,6 +92,9 @@
           id="Idbox"
         />
         <label class="form-label">Id</label>
+        <div class="invalid-id small">
+          Please don't change the id while inserting.
+        </div>
       </div>
       <div class="mb-3 col-10 pair form-floating">
         <textarea
@@ -361,8 +364,25 @@
       //----------Test Data-----------------------------------------------------
 
       $(document).ready(function () {
-        // toastr.success("The process has been saved.", "Success");
-        // toastr.success("The process has been saved.", "Success");
+        //Making ID consecutive or deciding ID from  our side
+        const dbref = ref(db);
+        get(child(dbref, "books/"))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              console.log(snapshot.val());
+              let idValue = snapshot.val();
+              // idValue = idValue.length + 1;
+              idValue = idValue.length;
+              idbox.value = idValue;
+              //Filling the ID here by ourself
+            } else {
+              alert("No data found!");
+            }
+          })
+          .catch((error) => {
+            alert("unsuccessful, error!");
+          });
+        //ID part ends
       });
     </script>
     <script

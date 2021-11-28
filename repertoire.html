@@ -139,6 +139,10 @@
         get(child(dbref, "/books")).then(function (snapshot) {
           if (snapshot.exists()) {
             const data = snapshot.val();
+            // const duta = snapshot.val();
+            // data = JSON.parse(data);
+            // const data = Object.entries(duta);
+            console.log("Data is - ", data);
             //
             data.forEach((book) => {
               //
