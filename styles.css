@@ -96,6 +96,7 @@
   box-shadow: 2px 4px 8px rgb(68, 67, 67);
   border-radius: 10px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .destination strong {
@@ -127,6 +128,9 @@ p {
 .container {
   display: flex;
   flex-wrap: wrap;
+  /* transition: all .5s ease-in-out; */
+  transition: all 5s;
+  /* animation: fadein 5s; */
 }
 
 .card {
@@ -201,4 +205,31 @@ header {
   margin: 1rem auto;
   margin-top: 0;
   object-fit: cover;
+}
+
+#closeBtn {
+  /* background-color: rgb(116, 131, 214); */
+  background-color: rgb(14, 16, 22);
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: all 1s ease-in-out;
+  display: block;
+  /* animation: fadein 5s; */
+  color: white;
+  border: none;
+  font-size: larger;
+}
+
+#closeBtn:hover {
+  /* transform: translate3D(0, -5px, 0);  */
+  background-color: rgba(211, 223, 147, 0.884);
+  color: black;
 }

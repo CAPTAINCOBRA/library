@@ -55,8 +55,8 @@
     </main>
     <div id="root"></div>
 
-    <footer>
-      <ul>
+    <footer id="footer">
+      <ul id="footer-ul">
         <li>
           <a href="https://www.instagram.com">
             <img src="images/icons/insta.png" alt="Instagram logo"
@@ -144,6 +144,25 @@
             // const data = Object.entries(duta);
             console.log("Data is - ", data);
             //
+            const keys = Object.keys(data);
+            console.log("Keys are - ", keys);
+            const ul_footer = document.createElement("ul");
+            ul_footer.setAttribute("class", "footer-ul");
+            ul_footer.setAttribute("class", "list-group");
+            const footer = document.getElementById("footer");
+            footer.appendChild(ul_footer);
+            keys.forEach((key) => {
+              const ali = document.createElement("a");
+
+              const li = document.createElement("li");
+              li.setAttribute("class", "list-group-item");
+              li.innerHTML = key;
+              ali.appendChild(li);
+
+              // ul_footer.appendChild(li);
+              ul_footer.appendChild(ali);
+            });
+
             data.forEach((book) => {
               //
 

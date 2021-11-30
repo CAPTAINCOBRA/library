@@ -227,3 +227,21 @@ h1 {
   width: 4.5rem;
   height: 4.5rem;
 }
+
+/* .footer-ul {
+  flex-direction: row;
+} */
+
+.list-group {
+  flex-direction: row;
+  padding-top: 30px;
+}
+
+.list-group-item {
+  color: white;
+  background: linear-gradient(70deg, rgb(24, 24, 24), rgb(25, 29, 29));
+}
+
+#footer a {
+  cursor: pointer;
+}
