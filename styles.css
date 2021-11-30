@@ -129,8 +129,15 @@ p {
   display: flex;
   flex-wrap: wrap;
   /* transition: all .5s ease-in-out; */
-  transition: all 5s;
+  /* transition: all 5s; */
   /* animation: fadein 5s; */
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
+}
+
+.container :last-child {
+  page-break-before: always; /* CSS 2.1 syntax */
+  break-before: always; /* New syntax */
 }
 
 .card {

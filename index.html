@@ -171,11 +171,20 @@
               card.appendChild(p);
             });
             //Bug 0
+            // const closeDiv = document.createElement("div");
+            // closeDiv.setAttribute("class", "closeDiv");
+
+            // const hr = document.createElement("hr");
+            // container.appendChild(hr);
             const closeBtn = document.createElement("button");
             closeBtn.setAttribute("class", "closeBtn");
             closeBtn.setAttribute("id", "closeBtn");
             closeBtn.textContent = "Close";
-            container.appendChild(closeBtn);
+            // closeDiv.appendChild(closeBtn);
+            // container.appendChild(closeBtn);
+            // container.appendChild(closeDiv);
+            // appl.appendChild(closeDiv);
+            appl.appendChild(closeBtn);
             //
             console.log(data);
 
@@ -184,6 +193,8 @@
               .addEventListener("click", () => {
                 container.style.transition = "all 0.5s ease-in-out";
                 container.innerHTML = "";
+                // appl.removeChild(closeDiv);
+                appl.removeChild(closeBtn);
               });
             //Bug 0 ends
           } else {
