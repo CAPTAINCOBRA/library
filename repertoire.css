@@ -245,3 +245,8 @@ h1 {
 #footer a {
   cursor: pointer;
 }
+
+#toggle {
+  /* color: rgb(183, 230, 235); */
+  cursor: pointer;
+}

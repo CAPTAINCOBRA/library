@@ -2,6 +2,7 @@
   Bug 0 - Added a close button at the ends of Reportoire. 
   Bug 1 - Changed data array to Object and Iterating over it. Removing need for ID's to be consecutive
   Bug 2 - Added id's to the footer
+  Bug 3 - Added a Toggle button in the header of Reportoire to switch between the two Dark and Light view.
  -->
 
 <!DOCTYPE html>
@@ -53,6 +54,8 @@
             <a href="https://contact-ekansh.herokuapp.com/">Contact Us</a>
           </li>
           <li><a href="https://github.com/CAPTAINCOBRA">About</a></li>
+          <!-- <li><a id="toggle">Toggle Theme</a></li> --> <!-- Bug 3 -->
+          <li><button class="btn btn-warning" id="toggle" href="">Toggle Theme</button class="warning"></li> <!-- Bug 3 -->
         </ul>
       </nav>
     </header>
@@ -189,6 +192,8 @@
               //
 
               const cli = document.createElement("li");
+              cli.setAttribute("class", "hook"); //Bug 3
+              // cli.setAttribute("class", "list-group-item"); //Veryy Big Thing
               const cimg = document.createElement("img");
               const div1 = document.createElement("div");
               div1.setAttribute("class", "item-content");
@@ -286,7 +291,37 @@
         getData();
       });
 
+      // const changeTheme = () => {
+      //   const theme = document.getElementById("theme");
+      //   if (theme.classList.contains("dark")) {
+      //     theme.classList.remove("dark");
+      //     theme.classList.add("light");
+      //   } else {
+      //     theme.classList.remove("light");
+      //     theme.classList.add("dark");
+      //   }
+      // };
+
+      // Bug 3 - Starts
+      const changeTheme = (e) => {
+        // document.getElementsByClassName("theme")[0].classList.toggle("dark");
+        // document.getElementsByClassName("hook")[1].classList.toggle("list-group-item");
+        // document.getElementsByClassName("hook").map((item) => {
+        //   item.classList.toggle("list-group-item");
+        // });
+        e.preventDefault();
+        var temp = document.getElementsByClassName("hook");
+        temp = Array.from(temp);
+        console.log(temp);
+        temp.forEach((item) => {
+          item.classList.toggle("list-group-item");
+        });
+        // console.log(document.getElementsByClassName("hook"));
+      };
+
       // document.getElementById("show").addEventListener("click", getData);
+      document.getElementById("toggle").addEventListener("click", changeTheme);
+      // Bug 3 - Ends
 
       // var instBtn = document.getElementById("instBtn");
 
