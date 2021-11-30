@@ -1,3 +1,9 @@
+<!-- 
+  Bug 0 - Added a close button at the ends of Reportoire. 
+  Bug 1 - Changed data array to Object and Iterating over it. Removing need for ID's to be consecutive
+  Bug 2 - Added id's to the footer
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -138,7 +144,7 @@
 
         get(child(dbref, "/books")).then(function (snapshot) {
           if (snapshot.exists()) {
-            const data = snapshot.val();
+            var data = snapshot.val(); //Bug 1
             // const duta = snapshot.val();
             // data = JSON.parse(data);
             // const data = Object.entries(duta);
@@ -146,6 +152,20 @@
             //
             const keys = Object.keys(data);
             console.log("Keys are - ", keys);
+
+            //Bug 1
+            const values = Object.values(data);
+            console.log("Values are - ", values);
+
+            const entries = Object.entries(data);
+            console.log("Entries are - ", entries);
+
+            const books = [];
+            Object.entries(data).forEach(([key, value]) => books.push(value));
+            console.log("Books are - ", books);
+            // Bug 1 - Ends
+
+            //Bug 2 starts
             const ul_footer = document.createElement("ul");
             ul_footer.setAttribute("class", "footer-ul");
             ul_footer.setAttribute("class", "list-group");
@@ -162,7 +182,9 @@
               // ul_footer.appendChild(li);
               ul_footer.appendChild(ali);
             });
+            //Bug 2 ends
 
+            data = books; //Bug 1
             data.forEach((book) => {
               //
 

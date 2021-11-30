@@ -1,3 +1,9 @@
+<!-- 
+  Bug 0 - Added a close button at the ends of Reportoire. 
+  Bug 1 - Changed data array to Object and Iterating over it. Removing need for ID's to be consecutive
+  Bug 2 - Added id's to the footer
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -132,8 +138,14 @@
 
         get(child(dbref, "/books")).then(function (snapshot) {
           if (snapshot.exists()) {
-            const data = snapshot.val();
-            //
+            var data = snapshot.val(); // Bug 1
+
+            //Bug 1
+            const books = [];
+            Object.entries(data).forEach(([key, value]) => books.push(value));
+            data = books;
+            //Bug 1 ends
+
             data.forEach((book) => {
               const card = document.createElement("div");
               card.setAttribute("class", "card");
@@ -158,6 +170,7 @@
               card.appendChild(div);
               card.appendChild(p);
             });
+            //Bug 0
             const closeBtn = document.createElement("button");
             closeBtn.setAttribute("class", "closeBtn");
             closeBtn.setAttribute("id", "closeBtn");
@@ -172,6 +185,7 @@
                 container.style.transition = "all 0.5s ease-in-out";
                 container.innerHTML = "";
               });
+            //Bug 0 ends
           } else {
             console.log("No data found");
           }

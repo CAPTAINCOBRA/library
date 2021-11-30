@@ -1,3 +1,8 @@
+<!-- 
+  Bug 0 - Added a close button at the ends of Reportoire. 
+  Bug 1 - Changed data array to Object and Iterating over it. Removing need for ID's to be consecutive
+  Bug 2 - Added id's to the footer
+ -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -92,9 +97,9 @@
           id="Idbox"
         />
         <label class="form-label">Id</label>
-        <div class="invalid-id small">
+        <!-- <div class="invalid-id small"> //Bug 1 - Removed this div
           Please don't change the id while adding.
-        </div>
+        </div> -->
       </div>
       <div class="mb-3 col-10 pair form-floating">
         <textarea
@@ -179,15 +184,17 @@
       //-------------------INSERT Data -------------------------------------------------
 
       function InsertData() {
-        try {
-          let idValue = idbox.value;
-          if (idValue == "" || idValue == undefined || idValue == null) {
-            alert("Please enter the ID!");
-            return;
-          }
-        } catch (error) {
-          console.log(Error);
-        }
+        //Bug 1
+        // try {
+        //   let idValue = idbox.value;
+        //   if (idValue == "" || idValue == undefined || idValue == null) {
+        //     alert("Please enter the ID!");
+        //     return;
+        //   }
+        // } catch (error) {
+        //   console.log(Error);
+        // }
+        //Bug 1 ends
 
         //Check if data exists starts
         const dbref = ref(db);
@@ -220,7 +227,8 @@
                     titlebox.value = "";
                     imagebox.value = "";
                     descbox.value = "";
-                    idbox.value = idbox.value + 1;
+                    // idbox.value = idbox.value + 1; //Bug 1
+                    idbox.value = ""; //Bug 1
                     party.confetti(instBtn, {
                       // count: party.variation.range(50000, 40000),
                       count: party.variation.range(5000, 5000),
