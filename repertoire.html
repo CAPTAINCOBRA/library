@@ -3,6 +3,8 @@
   Bug 1 - Changed data array to Object and Iterating over it. Removing need for ID's to be consecutive
   Bug 2 - Added id's to the footer
   Bug 3 - Added a Toggle button in the header of Reportoire to switch between the two Dark and Light view.
+  Bug 4 - Removed favourite section from Reportoireas it is already present in the Index page
+  Bug 5 - Added ids to booklist and refs to footer to direct at the correct place in the page.
  -->
 
 <!DOCTYPE html>
@@ -40,20 +42,20 @@
   <body>
     <header>
       <div id="page-logo">
-        <a href="/index.html">Bucket List</a>
+        <a class="headerLink" href="/index.html">Bucket List</a>
       </div>
       <nav>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <a class="headerLink" href="/">Home</a>
           </li>
           <li>
-            <a href="/add-book.html">Add Book</a>
+            <a class="headerLink" href="/add-book.html">Add Book</a>
           </li>
           <li>
-            <a href="https://contact-ekansh.herokuapp.com/">Contact Us</a>
+            <a class="headerLink" href="https://contact-ekansh.herokuapp.com/">Contact Us</a>
           </li>
-          <li><a href="https://github.com/CAPTAINCOBRA">About</a></li>
+          <li><a class="headerLink" href="https://github.com/CAPTAINCOBRA">About</a></li>
           <!-- <li><a id="toggle">Toggle Theme</a></li> --> <!-- Bug 3 -->
           <li><button class="btn btn-warning" id="toggle" href="">Toggle Theme</button class="warning"></li> <!-- Bug 3 -->
         </ul>
@@ -148,6 +150,7 @@
         get(child(dbref, "/books")).then(function (snapshot) {
           if (snapshot.exists()) {
             var data = snapshot.val(); //Bug 1
+            const dutta = data; //Bug 5
             // const duta = snapshot.val();
             // data = JSON.parse(data);
             // const data = Object.entries(duta);
@@ -176,6 +179,7 @@
             footer.appendChild(ul_footer);
             keys.forEach((key) => {
               const ali = document.createElement("a");
+              ali.setAttribute("href", "#"+key); //Bug 5
 
               const li = document.createElement("li");
               li.setAttribute("class", "list-group-item");
@@ -193,6 +197,8 @@
 
               const cli = document.createElement("li");
               cli.setAttribute("class", "hook"); //Bug 3
+              // cli.setAttribute("id", data.indexOf(book)); //Bug 5
+              cli.setAttribute("id", Object.keys(dutta).find(key => dutta[key] === book)); //Bug 5
               // cli.setAttribute("class", "list-group-item"); //Veryy Big Thing
               const cimg = document.createElement("img");
               const div1 = document.createElement("div");
@@ -253,9 +259,10 @@
 
               containery.appendChild(cul);
 
-              //
+              //Bug 4
               const card = document.createElement("div");
               card.setAttribute("class", "card");
+              card.classList.add("hook"); //Bug 3
 
               const h1 = document.createElement("h1");
               h1.textContent = book.name;
@@ -275,6 +282,7 @@
               // card.appendChild(img);
               card.appendChild(div);
               card.appendChild(p);
+              //Bug 4
             });
             //
             app2.removeChild(waiter);
@@ -311,12 +319,17 @@
         // });
         e.preventDefault();
         var temp = document.getElementsByClassName("hook");
-        temp = Array.from(temp);
-        console.log(temp);
+        temp = Array.from(temp); //Conerting HTML collection to an Array
+        // console.log(temp); //Bug 3
         temp.forEach((item) => {
           item.classList.toggle("list-group-item");
         });
         // console.log(document.getElementsByClassName("hook"));
+        var headLink = document.getElementsByClassName("headerLink");
+        headLink = Array.from(headLink);
+        headLink.forEach((item) => {
+          item.classList.toggle("headerLinkDark");
+        });
       };
 
       // document.getElementById("show").addEventListener("click", getData);

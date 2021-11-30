@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: linear-gradient(30deg, rgb(77, 77, 77), rgb(58, 58, 58));
 }
@@ -34,6 +38,16 @@ main ul {
 li:nth-of-type(3n) {
   grid-column: 1 / span 2;
 }
+
+/* li:nth-of-type(2n):hover {
+  transform: translate3D(0, -5px, 0);
+}
+li:nth-of-type(2n + 1):hover {
+  transform: translate3D(-5px, 0, 0);
+} */
+/* li:nth-of-type(3n):hover {
+  transform: translate3D(0, 0, -5px);
+} */
 
 main li {
   display: flex;
@@ -249,4 +263,29 @@ h1 {
 #toggle {
   /* color: rgb(183, 230, 235); */
   cursor: pointer;
+}
+
+.container li:target {
+  background-color: rgb(170, 135, 149);
+}
+
+/* Legendary both one above and one below */
+.container li:focus {
+  background-color: rgb(135, 170, 144);
+}
+
+.container li:focus {
+  background-color: rgb(135, 170, 144);
+}
+
+.container li:hover {
+  /* transition: all 0.2s linear; */
+  /* translate: 5px; */
+  box-shadow: 2px 8px 45px rgba(0, 0, 0, 0.15);
+  /* transform: translate3D(0, -5px, 0); */
+  /* transform: translate3D(-5px, 0, 0); */
+}
+
+.headerLinkDark {
+  color: antiquewhite !important;
 }
