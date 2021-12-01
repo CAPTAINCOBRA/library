@@ -1,5 +1,6 @@
 .form-container {
   /* height: 700px; */
+  height: 85vh;
   /* width: 700px; */
   display: flex;
   flex-direction: column;
@@ -13,6 +14,12 @@
 
 header {
   position: relative;
+  /* background-color: rgb(96 89 34 / 50%); */
+}
+
+header a {
+  background-color: rgb(96 89 34 / 50%);
+  /* background-color: rgb(96 71 51 / 59%); */
 }
 
 body {
@@ -107,4 +114,36 @@ body {
   color: #dc3545;
   background-color: wheat;
   width: fit-content;
+}
+
+.btn-primary {
+  border-color: transparent;
+}
+
+.btn-primary:hover {
+  border-color: transparent;
+}
+
+.list-group {
+  flex-direction: row;
+  padding-top: 30px;
+}
+
+.list-group-item {
+  color: white;
+  background: linear-gradient(70deg, rgb(24, 24, 24), rgb(25, 29, 29));
+}
+
+#footer .list-group-item {
+  width: 150px;
+}
+
+#footer a {
+  cursor: pointer;
+}
+
+#footer .list-group a {
+  text-decoration: none;
+  padding: 20px;
+  margin: 10px;
 }

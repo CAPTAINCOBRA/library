@@ -289,3 +289,7 @@ h1 {
 .headerLinkDark {
   color: antiquewhite !important;
 }
+
+#footer .list-group a {
+  text-decoration: none;
+}

@@ -2,6 +2,7 @@
   Bug 0 - Added a close button at the ends of Reportoire. 
   Bug 1 - Changed data array to Object and Iterating over it. Removing need for ID's to be consecutive
   Bug 2 - Added id's to the footer
+  Bug 6 - Added Footer to Add book page. Provided functionality to fetch data from the database and display it upon click on footer links of Book Ids.
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +43,7 @@
      </script> -->
   </head>
   <body>
-    <header>
+    <header id="header">
       <div id="page-logo">
         <a href="/index.html">Library</a>
       </div>
@@ -141,6 +142,22 @@
       </button> -->
     </div>
     <!-- </form> -->
+    <!-- Bug 6 starts  -->
+    <footer id="footer">
+      <ul id="footer-ul">
+        <li>
+          <a href="https://www.instagram.com">
+            <img src="images/icons/insta.png" alt="Instagram logo"
+          /></a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com">
+            <img src="images/icons/facebook.png" alt="Facebook logo"
+          /></a>
+        </li>
+      </ul>
+    </footer>
+    <!-- Bug 6 ends -->
     <script type="module">
       //-----------------Firebase Config---------------------------------
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
@@ -184,17 +201,15 @@
       //-------------------INSERT Data -------------------------------------------------
 
       function InsertData() {
-        //Bug 1
-        // try {
-        //   let idValue = idbox.value;
-        //   if (idValue == "" || idValue == undefined || idValue == null) {
-        //     alert("Please enter the ID!");
-        //     return;
-        //   }
-        // } catch (error) {
-        //   console.log(Error);
-        // }
-        //Bug 1 ends
+        try {
+          let idValue = idbox.value;
+          if (idValue == "" || idValue == undefined || idValue == null) {
+            alert("Please enter the ID 101!");
+            return;
+          }
+        } catch (error) {
+          console.log(Error);
+        }
 
         //Check if data exists starts
         const dbref = ref(db);
@@ -239,7 +254,7 @@
                     );
                   })
                   .catch((error) => {
-                    alert("unsuccessful, error!");
+                    alert("unsuccessful, error 101!");
                   });
               } catch (error) {
                 console.log(error);
@@ -248,7 +263,7 @@
             }
           })
           .catch((error) => {
-            alert("unsuccessful, error!");
+            alert("unsuccessful, error102!");
           });
 
         //Check if the data already exists ends
@@ -259,7 +274,7 @@
         try {
           let idValue = idbox.value;
           if (idValue == "" || idValue == undefined || idValue == null) {
-            alert("Please enter the ID!");
+            alert("Please enter the ID 102!");
             return;
           }
         } catch (error) {
@@ -286,7 +301,7 @@
             }
           })
           .catch((error) => {
-            alert("unsuccessful, error!");
+            alert("unsuccessful, error 103!");
           });
       }
 
@@ -295,7 +310,7 @@
         try {
           let idValue = idbox.value;
           if (idValue == "" || idValue == undefined || idValue == null) {
-            alert("Please enter the ID!");
+            alert("Please enter the ID 103!");
             return;
           }
         } catch (error) {
@@ -324,7 +339,7 @@
               toastr.warning("The book has been updated.", "Updated");
             })
             .catch((error) => {
-              alert("unsuccessful, error!");
+              alert("unsuccessful, error 104!");
             });
         } catch (error) {
           console.log(error);
@@ -337,7 +352,7 @@
         try {
           let idValue = idbox.value;
           if (idValue == "" || idValue == undefined || idValue == null) {
-            alert("Please enter the ID!");
+            alert("Please enter the ID 104!");
             return;
           }
         } catch (error) {
@@ -355,7 +370,7 @@
               toastr.error("Book deleted successfully!", "Deleted!");
             })
             .catch((error) => {
-              alert("unsuccessful, error!");
+              alert("unsuccessful, error 105!");
             });
         } catch (error) {
           console.log(error);
@@ -370,28 +385,78 @@
       deleteBtn.addEventListener("click", deleteData);
 
       //----------Test Data-----------------------------------------------------
-
+      // var listFoot = [];
       $(document).ready(function () {
         //Making ID consecutive or deciding ID from  our side
         const dbref = ref(db);
         get(child(dbref, "books/"))
           .then((snapshot) => {
             if (snapshot.exists()) {
-              console.log(snapshot.val());
-              let idValue = snapshot.val();
-              // idValue = idValue.length + 1;
-              idValue = idValue.length;
-              idbox.value = idValue;
-              //Filling the ID here by ourself
+              //Bug 6 starts
+              var data = snapshot.val();
+              const keys = Object.keys(data);
+              const values = Object.values(data);
+              console.log("Halo", data);
+              console.log("Alpha", values);
+
+              const ul_footer = document.createElement("ul");
+              ul_footer.setAttribute("class", "footer-ul");
+              ul_footer.setAttribute("class", "list-group");
+              const footer = document.getElementById("footer");
+              footer.appendChild(ul_footer);
+              keys.forEach((key) => {
+                const ali = document.createElement("a");
+                // ali.setAttribute("href", "#" + key); //Bug 5
+                ali.setAttribute("id", key);
+                ali.setAttribute("class", "lulz");
+
+                const li = document.createElement("li");
+                li.setAttribute("class", "list-group-item");
+                li.innerHTML = key + ". " + data[key].name;
+                // li.innerHTML = data[key].name;
+                ali.appendChild(li);
+
+                // ul_footer.appendChild(li);
+                ul_footer.appendChild(ali);
+              });
+              var listFoot = document.getElementsByClassName("lulz");
+              listFoot = Array.from(listFoot);
+              listFoot.forEach((item) => {
+                item.addEventListener("click", () => fetchDataFoot(item));
+              });
+              //Bug 6 ends
+
+              // //Bug 1
+              // console.log(snapshot.val());
+              // var obj = snapshot.val();
+              // var objLength = Object.keys(obj).length;
+              // // let idValue = snapshot.val();
+              // let idValue = objLength;
+              // // idValue = idValue.length + 1;
+              // // idValue = idValue.length;
+              // idbox.value = idValue;
+              // //Filling the ID here by ourself
+              // //Bug 1 ends
             } else {
               alert("No data found!");
             }
           })
           .catch((error) => {
-            alert("unsuccessful, error!");
+            alert("unsuccessful, error 106!");
           });
         //ID part ends
       });
+
+      // Bug 6 starts
+      const fetchDataFoot = (item) => {
+        console.log(item);
+        console.log(item.innerHTML);
+        idbox.value = item.id;
+        fetchData();
+        //navigate to header
+        window.location.href = "#header";
+      };
+      // Bug 6 ends
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
