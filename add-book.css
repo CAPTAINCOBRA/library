@@ -24,15 +24,43 @@ header a {
 
 body {
   /* background-image: url("images/library.jpg"); */
-  background-image: url();
+  /* background-image: url(); */
   /* background-image: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F06%2FHD-Book-Wallpapers-Download.jpg&f=1&nofb=1); */
-  background-image: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-pXMc7QmBC6M%2FUHOSklCqyiI%2FAAAAAAAAB5E%2FuppmHENzG4Q%2Fs1600%2F5.jpg&f=1&nofb=1);
+  /* background-image: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-pXMc7QmBC6M%2FUHOSklCqyiI%2FAAAAAAAAB5E%2FuppmHENzG4Q%2Fs1600%2F5.jpg&f=1&nofb=1); */
   /* background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp2036901.jpg&f=1&nofb=1); */
-  background-position: center;
+  /* background-position: center;
   background-size: cover;
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-pXMc7QmBC6M%2FUHOSklCqyiI%2FAAAAAAAAB5E%2FuppmHENzG4Q%2Fs1600%2F5.jpg&f=1&nofb=1);
-  background: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-pXMc7QmBC6M%2FUHOSklCqyiI%2FAAAAAAAAB5E%2FuppmHENzG4Q%2Fs1600%2F5.jpg&f=1&nofb=1);
+  background: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-pXMc7QmBC6M%2FUHOSklCqyiI%2FAAAAAAAAB5E%2FuppmHENzG4Q%2Fs1600%2F5.jpg&f=1&nofb=1); */
+
+  /* // Moving Background */
+  /* background: url(https://d8it4huxumps7.cloudfront.net/uploads/images/d2c-images/organiser-list.jpg?d=1600x1420); */
+  /* background-size: 80%; */
+  background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp2036901.jpg&f=1&nofb=1);
+  background-position: center;
+  background-size: cover;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-pXMc7QmBC6M%2FUHOSklCqyiI%2FAAAAAAAAB5E%2FuppmHENzG4Q%2Fs1600%2F5.jpg&f=1&nofb=1); */
+  animation-name: rotate-bg;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(https://www.dublincity.ie/sites/default/files/media/inline-images/migrated/2019%20Longlist%20Collage%2016%20x%209.jpg);
+  /* background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://media.npr.org/assets/img/2013/12/04/books_wide-148e1d9…-s1100-c50.png); */
+  /* background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://media.npr.org/assets/img/2021/11/19/cover-grid_wide-0fa1644…-s700-c85.jpg); */
+  background-size: contain;
+  /* Moving Background ends */
+}
+
+.form-container {
+  animation-name: welcome;
+  animation-duration: 3s;
+  /* animation-iteration-count: infinite; */
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  /* margin: auto !important; */
 }
 
 .form-label {
@@ -147,3 +175,77 @@ body {
   padding: 20px;
   margin: 10px;
 }
+
+/* Bug 7 */
+/* .scrollbar::-webkit-scrollbar {
+  display: none;
+} */
+
+/* IE and Edge. For Firefox below. */
+/* .scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+} */
+/* Bug 7 ends  */
+
+/* ::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+} */
+
+/* @media only screen and (min-width: 992px) {
+  @-webkit-keyframes rotate-bg {
+    0% {
+      background-position: 0 0vw;
+    }
+    to {
+      background-position: 0 -100vw;
+    }
+  }
+  @keyframes rotate-bg {
+    0% {
+      background-position: 0 0vw;
+    }
+    to {
+      background-position: 0 -100vw;
+    }
+  }
+} */
+/* Bug 10 starts  */
+@media only screen and (min-width: 992px) {
+  @keyframes rotate-bg {
+    0% {
+      background-position: 0vh 0vw;
+    }
+    to {
+      background-position: -100vh 0vw;
+    }
+  }
+  /* @keyframes welcome {
+    
+    from {
+      margin-left: 100%;
+      width: 700px;
+    }
+
+    to {
+      margin-left: 28%;
+      width: 700px;
+    }
+  } */
+}
+
+/* Bug 10 ends */

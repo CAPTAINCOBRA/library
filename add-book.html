@@ -1,8 +1,11 @@
 <!-- 
-  Bug 0 - Added a close button at the ends of Reportoire. 
-  Bug 1 - Changed data array to Object and Iterating over it. Removing need for ID's to be consecutive
-  Bug 2 - Added id's to the footer
-  Bug 6 - Added Footer to Add book page. Provided functionality to fetch data from the database and display it upon click on footer links of Book Ids.
+  Bug 0 - 30/11/2021 - Added a close button at the ends of Reportoire. 
+  Bug 1 - 30/11/2021 - Changed data array to Object and Iterating over it. Removing need for ID's to be consecutive
+  Bug 2 - 30/11/2021 - Added id's to the footer
+  Bug 6 - 31/11/2021 - Added Footer to Add book page. Provided functionality to fetch data from the database and display it upon click on footer links of Book Ids.
+  Bug 7 - 31/11/2021 - Removed Scrollbar from Add Book page.
+  Bug 8 - 31/11/2021 - Added custom Scrollbar
+  Bug 10 - Added moving background image with books
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +45,8 @@
       window.myVar = '{{ env(MY_VAR) }}';
      </script> -->
   </head>
-  <body>
+  <body class="scrollbar">
+    <!-- Bug 7 -->
     <header id="header">
       <div id="page-logo">
         <a href="/index.html">Library</a>

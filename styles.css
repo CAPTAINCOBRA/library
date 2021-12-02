@@ -3,6 +3,9 @@
   background-image: url("images/library.jpg");
   background-position: center;
   background-size: cover;
+
+  display: contents;
+  /* display: initial; */
 }
 
 #hero-content {
@@ -17,6 +20,11 @@
   top: 200px;
   /* align-items: center; */
   /* justify-content: center; */
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #hero-content h1 {
@@ -191,6 +199,7 @@ p {
 
 header {
   background-color: rgba(138, 127, 29, 0.5);
+  z-index: 1;
 }
 
 .card img {
@@ -239,4 +248,13 @@ header {
   /* transform: translate3D(0, -5px, 0);  */
   background-color: rgba(211, 223, 147, 0.884);
   color: black;
+}
+
+.carousel img {
+  width: 100%;
+  /* height: 80vh !important; */
+  height: 100vh !important;
+  margin-top: 0px;
+  object-fit: cover;
+  margin-bottom: 0px;
 }
