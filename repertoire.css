@@ -295,7 +295,7 @@ h1 {
 }
 
 @media screen and (max-width: 600px) {
-  .hook img {
+  #rooty .hook img {
     width: 40%;
     height: 100%;
   }
@@ -354,5 +354,9 @@ h1 {
 
   .item-content p {
     padding: 0px;
+  }
+
+  .item-content {
+    padding: 10px;
   }
 }
