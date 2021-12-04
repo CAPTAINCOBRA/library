@@ -8,6 +8,8 @@
   Bug 10 - Added moving background image with books
   Bug 11 -04/12/2021 - Make site responsive
   Bug 12 - 04/12/2021 - Added Bootstrap and jquery dist files to the project.
+  Bug 13 - 04/12/2021 - Toastr messages were coming white due to Bootstrap interference. Moved after the Bootstrap files.
+  Bug 14 - 04/12/2021 - Added Toastr dist files to the project.
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -22,17 +24,13 @@
       href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"
       rel="stylesheet"
     /> -->
-    <!-- Bug 12 <link
+    <!-- Bug 12 
+      <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     /> -->
-    <!-- Toastr Library -->
-    <link
-      href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
-      rel="stylesheet"
-    />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
@@ -43,6 +41,14 @@
       rel="stylesheet"
     /> -->
     <link rel="stylesheet" href="assets/bootstrap.min.css" />
+    <!-- Bug 14 starts-->
+    <!-- Bug 13  -->
+    <!-- <link
+      href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    /> -->
+    <link rel="stylesheet" href="assets/toastr.min.css" />
+    <!-- Bug 14 ends-->
     <!--Bug 12 above line-->
     <!-- Toastr Library Ends -->
     <link rel="stylesheet" href="shared.css" />
@@ -480,7 +486,9 @@
       crossorigin="anonymous"
     ></script> -->
     <!-- Bug 12 ends  -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <!-- Bug 14 -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> -->
+    <script src="/assets/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
     <!--Toastr-->
   </body>
