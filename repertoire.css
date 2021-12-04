@@ -293,3 +293,50 @@ h1 {
 #footer .list-group a {
   text-decoration: none;
 }
+
+@media screen and (max-width: 600px) {
+  .hook img {
+    width: 40%;
+    height: 100%;
+  }
+
+  /* .hook .actions img {
+    height: auto;
+    width: auto;
+  } */
+
+  #book-img {
+    width: 40% !important;
+    height: 100%;
+  }
+
+  .hook p {
+    font-size: 12px;
+    padding-bottom: 0px;
+  }
+
+  .hook h1 {
+    font-size: 1rem;
+  }
+
+  .hook h4 {
+    font-size: 0.9rem;
+  }
+
+  header {
+    width: max-content;
+    display: contents;
+  }
+
+  #page-logo .headerLink {
+    font-size: 2rem;
+  }
+
+  header li a {
+    font-size: 1rem;
+  }
+
+  nav {
+    padding-bottom: 10px;
+  }
+}

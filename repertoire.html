@@ -245,6 +245,8 @@
               // ca.textContent = "Buy";
               // ca.setAttribute("href", book.link);
               cimg.setAttribute("src", book.image);
+              cimg.setAttribute("alt", book.name);
+              cimg.setAttribute("id", "book-img");
 
               const cp = document.createElement("p");
               book.description = book.description.substring(0, 300);
