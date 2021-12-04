@@ -277,3 +277,47 @@ body {
 }
 
 /* Bug 10 ends */
+
+/* Bug 11 starts */
+@media screen and (max-width: 900px) {
+  .btn {
+    width: auto;
+  }
+
+  .buttonTray {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .btn {
+    width: auto;
+  }
+
+  .buttonTray {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form-container {
+    padding: 0;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  header li {
+    margin-left: 0;
+  }
+
+  header a {
+    font-size: medium;
+  }
+
+  header {
+    width: max-content;
+    display: block;
+  }
+}
+/* Bug 11 ends  */

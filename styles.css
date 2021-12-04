@@ -258,3 +258,68 @@ header {
   object-fit: cover;
   margin-bottom: 0px;
 }
+
+/* media screen queries for mobile devices  */
+/* @media screen and (min-width: 360px) {
+  #hero-content {
+    width: auto;
+    display: grid;
+  }
+
+  #hero-content p {
+    margin-bottom: auto;
+  }
+
+  #hero-content a {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #show {
+    margin-top: 20px;
+    z-index: 111;
+  }
+} */
+
+@media screen and (max-width: 900px) {
+  #hero-content {
+    width: auto;
+    display: grid;
+  }
+
+  #hero-content p {
+    margin-bottom: auto;
+  }
+
+  #hero-content a {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #show {
+    margin-top: 20px;
+    z-index: 111;
+  }
+  .carousel img {
+    width: 100%;
+    height: 100vh !important;
+    margin-top: 0px;
+    object-fit: cover;
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  header li {
+    margin-left: 0;
+  }
+
+  header a {
+    font-size: medium;
+  }
+
+  header {
+    width: max-content;
+    display: block;
+  }
+}
