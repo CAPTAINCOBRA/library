@@ -315,12 +315,15 @@ h1 {
     padding-bottom: 0px;
   }
 
-  .hook h1 {
-    font-size: 1rem;
+  .hook h2 {
+    font-size: 1.2rem;
+    padding-left: 0 !important;
   }
 
   .hook h4 {
     font-size: 0.9rem;
+    margin: 0;
+    padding-left: 0 !important;
   }
 
   header {
@@ -338,5 +341,18 @@ h1 {
 
   nav {
     padding-bottom: 10px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .actions a {
+    padding: 5px;
+  }
+
+  .item-content p {
+    padding: 0px;
   }
 }
