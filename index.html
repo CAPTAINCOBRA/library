@@ -200,16 +200,25 @@
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
 
+      import {
+        apiKey,
+        authDomain,
+        databaseURL,
+        projectId,
+        storageBucket,
+        messagingSenderId,
+        appId,
+      } from "/apiKey.js";
+
       // Your web app's Firebase configuration
       const firebaseConfig = {
-        apiKey: "AIzaSyAwumkhm8FXf9gqxJamWDfKB2810--fOxk",
-        authDomain: "library-83403.firebaseapp.com",
-        databaseURL:
-          "https://library-83403-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "library-83403",
-        storageBucket: "library-83403.appspot.com",
-        messagingSenderId: "801479317930",
-        appId: "1:801479317930:web:4dcf61be9e2f45d44133d3",
+        apiKey: apiKey,
+        authDomain: authDomain,
+        databaseURL: databaseURL,
+        projectId: projectId,
+        storageBucket: storageBucket,
+        messagingSenderId: messagingSenderId,
+        appId: appId,
       };
 
       // Initialize Firebase
