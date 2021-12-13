@@ -195,106 +195,51 @@
     ></script> -->
     <!-- Bug 12 ends  -->
     <script type="module" id="MainScript">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-
-      import {
-        apiKey,
-        authDomain,
-        databaseURL,
-        projectId,
-        storageBucket,
-        messagingSenderId,
-        appId,
-      } from "/apiKey.js";
-
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: apiKey,
-        authDomain: authDomain,
-        databaseURL: databaseURL,
-        projectId: projectId,
-        storageBucket: storageBucket,
-        messagingSenderId: messagingSenderId,
-        appId: appId,
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-
-      import {
-        getDatabase,
-        ref,
-        set,
-        child,
-        update,
-        remove,
-        get,
-      } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
-
-      const db = getDatabase();
-
       const appl = document.getElementById("root");
       const container = document.createElement("div");
       container.setAttribute("class", "container");
       appl.appendChild(container);
 
-      // Get data function
+      //Express getData
       const getData = () => {
-        const dbref = ref(db);
-
-        get(child(dbref, "/books")).then(function (snapshot) {
-          if (snapshot.exists()) {
-            var data = snapshot.val(); // Bug 1
-
-            //Bug 1
-            const books = [];
-            Object.entries(data).forEach(([key, value]) => books.push(value));
-            data = books;
-            //Bug 1 ends
-
+        fetch("http://localhost:5000/api/books")
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
             data.forEach((book) => {
               const card = document.createElement("div");
               card.setAttribute("class", "card");
+              container.appendChild(card);
 
               const h1 = document.createElement("h1");
               h1.textContent = book.name;
-
-              const p = document.createElement("p");
-              // book.description = book.description.substring(0, 300);
-              p.textContent = `${book.description}...`;
-
-              const div = document.createElement("div");
-              div.setAttribute("class", "imgDiv");
+              card.appendChild(h1);
 
               const img = document.createElement("img");
-              img.src = book.image;
-              div.appendChild(img);
+              img.setAttribute("src", book.image);
+              card.appendChild(img);
 
-              container.appendChild(card);
-              card.appendChild(h1);
-              // card.appendChild(img);
-              card.appendChild(div);
-              card.appendChild(p);
+              const title = document.createElement("h2");
+              title.textContent = book.name;
+              title.cssText = "margin: inherit;";
+              title.classList.add("title");
+              card.appendChild(title);
+
+              const author = document.createElement("p");
+              author.textContent = book.author;
+              card.appendChild(author);
+
+              const description = document.createElement("p");
+              description.textContent = book.description;
+              card.appendChild(description);
             });
             //Bug 0
-            // const closeDiv = document.createElement("div");
-            // closeDiv.setAttribute("class", "closeDiv");
-
-            // const hr = document.createElement("hr");
-            // container.appendChild(hr);
             const closeBtn = document.createElement("button");
             closeBtn.setAttribute("class", "closeBtn");
             closeBtn.setAttribute("id", "closeBtn");
             closeBtn.textContent = "Close";
-            // closeDiv.appendChild(closeBtn);
-            // container.appendChild(closeBtn);
-            // container.appendChild(closeDiv);
-            // appl.appendChild(closeDiv);
             appl.appendChild(closeBtn);
-            //
+
             console.log(data);
 
             document
@@ -302,76 +247,15 @@
               .addEventListener("click", () => {
                 container.style.transition = "all 0.5s ease-in-out";
                 container.innerHTML = "";
-                // appl.removeChild(closeDiv);
                 appl.removeChild(closeBtn);
               });
             //Bug 0 ends
-          } else {
-            console.log("No data found");
-          }
-          // console.log(snapshot.val());
-        });
+          });
       };
+      //Express data Ends
 
       document.getElementById("show").addEventListener("click", getData);
-
-      // $(document).ready(function () {
-      //   $("#closeBtn").click(function () {
-      //     $("#root").toggle();
-      //     // $("#root").empty();
-      //     // $("#container").empty();
-      //     // appl.removeChild(container);
-      //     console.log("Hello");
-      //   });
-      // });
-
-      // $(document).ready(function () {
-      //   // $(body).setAttribute("id", "google_translate_element");
-      //   const bady = document.getElementsByClassName("lang");
-      //   const boody = Array.from(bady);
-      //   boody[0].setAttribute("id", "google_translate_element");
-      // });
     </script>
     <script src="script.js"></script>
   </body>
 </html>
-
-<!-- document.getElementById("add-book").addEventListener("click", function() {
-  const bookName = document.getElementById("book-name").value;
-  const bookAuthor = document.getElementById("book-author").value;
-  const bookGenre = document.getElementById("book-genre").value;
-  const bookYear = document.getElementById("book-year").value;
-  const bookImage = document.getElementById("book-image").value;
-  const bookDescription = document.getElementById("book-description").value;
-
-  // const book = {
-  //   name: bookName,
-  } -->
-
-<!-- 
-  // Get a reference to the database service
-  const database = app.database(); -->
-
-<!-- // document.getElementById("show").onClick = function () {
-    //   firebase
-    //     .database()
-    //     .ref("/")
-    //     .once("value", function (snapshot) {
-    //       console.log(snapshot.val());
-    //     });
-    //   // database.ref("/books").once("value").then(function (snapshot) {
-    //   //   console.log(snapshot.val());
-    //   // });
-    // }; -->
-
-<!-- //Smooth Scroll Starts. Found a btter way to do this. In CSS - html{scroll-behavior:smooth}
-    // document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    //   anchor.addEventListener("click", function (e) {
-    //     e.preventDefault();
-
-    //     document.querySelector(this.getAttribute("href")).scrollIntoView({
-    //       behavior: "smooth",
-    //     });
-    //   });
-    // });
-    //Smooth Scroll Ends -->

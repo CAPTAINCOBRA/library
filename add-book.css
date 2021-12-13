@@ -319,5 +319,11 @@ body {
     width: max-content;
     display: block;
   }
+
+  .form-container {
+    /* padding: 0; */
+    /* width: auto; */
+    height: 700px;
+  }
 }
 /* Bug 11 ends  */

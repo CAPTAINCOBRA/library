@@ -323,3 +323,7 @@ header {
     display: block;
   }
 }
+
+h2 {
+  margin: inherit;
+}

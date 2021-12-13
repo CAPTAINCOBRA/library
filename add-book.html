@@ -98,6 +98,16 @@
       <div class="mb-3 col-5 pair form-floating col-sm-5 col-lg-10 col-md-7">
         <input
           required
+          placeholder="Genre"
+          class="form-control"
+          type="text"
+          id="Genrebox"
+        />
+        <label class="form-label">Genre</label>
+      </div>
+      <div class="mb-3 col-5 pair form-floating col-sm-5 col-lg-10 col-md-7">
+        <input
+          required
           placeholder="Image"
           class="form-control"
           type="url"
@@ -154,6 +164,7 @@
       </button> -->
     </div>
     <!-- </form> -->
+
     <!-- Bug 6 starts  -->
     <footer id="footer">
       <ul id="footer-ul">
@@ -173,47 +184,13 @@
     <!--Bug 12 Below-->
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <script type="module">
-      //-----------------Firebase Config---------------------------------
-      import {
-        apiKey,
-        authDomain,
-        databaseURL,
-        projectId,
-        storageBucket,
-        messagingSenderId,
-        appId,
-      } from "/apiKey.js";
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
-      const firebaseConfig = {
-        apiKey: apiKey,
-        authDomain: authDomain,
-        databaseURL: databaseURL,
-        projectId: projectId,
-        storageBucket: storageBucket,
-        messagingSenderId: messagingSenderId,
-        appId: appId,
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-
-      import {
-        getDatabase,
-        ref,
-        set,
-        child,
-        update,
-        remove,
-        get,
-      } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js";
-
-      const db = getDatabase();
       //------------------References---------------------------------------
       var titlebox = document.getElementById("Titlebox");
       var authorbox = document.getElementById("Authorbox");
       var imagebox = document.getElementById("Imagebox");
       var descbox = document.getElementById("Descbox");
       var idbox = document.getElementById("Idbox");
+      var genrebox = document.getElementById("Genrebox");
 
       var instBtn = document.getElementById("instBtn");
       var fetchBtn = document.getElementById("fetchBtn");
@@ -233,62 +210,51 @@
           console.log(Error);
         }
 
-        //Check if data exists starts
-        const dbref = ref(db);
-        get(child(dbref, "books/" + idbox.value))
-          .then((snapshot) => {
-            if (snapshot.exists()) {
-              console.log(snapshot.val());
-              alert(
-                "Data for this ID already exists! \n Book name is - " +
-                  snapshot.val().name +
-                  ". Please use another ID"
-              );
-            } else {
-              // alert("No data found!");
-              try {
-                console.log(titlebox.value);
-                console.log(authorbox.value);
-                console.log(imagebox.value);
-                console.log(descbox.value);
-                set(ref(db, "books/" + idbox.value), {
-                  name: titlebox.value,
-                  author: authorbox.value,
-                  image: imagebox.value,
-                  // id: idbox.value,
-                  description: descbox.value,
-                })
-                  .then(() => {
-                    alert("Data stored successfully");
-                    authorbox.value = "";
-                    titlebox.value = "";
-                    imagebox.value = "";
-                    descbox.value = "";
-                    // idbox.value = idbox.value + 1; //Bug 1
-                    idbox.value = ""; //Bug 1
-                    party.confetti(instBtn, {
-                      // count: party.variation.range(50000, 40000),
-                      count: party.variation.range(5000, 5000),
-                    });
-                    toastr.success(
-                      "The book has been added successfully!.",
-                      "Success"
-                    );
-                  })
-                  .catch((error) => {
-                    alert("unsuccessful, error. Code 101!");
-                  });
-              } catch (error) {
-                console.log(error);
-                alert(error);
-              }
-            }
+        try {
+          fetch("http://localhost:5000/api/book/create", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: titlebox.value,
+              author: authorbox.value,
+              image: imagebox.value,
+              description: descbox.value,
+              id: idbox.value,
+              genre: genrebox.value,
+            }),
           })
-          .catch((error) => {
-            alert("unsuccessful, error. Code102!");
-          });
-
-        //Check if the data already exists ends
+            // .then((res) => res.json())
+            .then((res) => {
+              console.log(res);
+              if (res.status == 200) {
+                alert("Book added successfully!");
+                // window.location.reload();
+                authorbox.value = "";
+                titlebox.value = "";
+                imagebox.value = "";
+                descbox.value = "";
+                idbox.value = "";
+                genrebox.value = "";
+                toastr.success(
+                  "The book has been added successfully!.",
+                  "Success"
+                );
+              } else {
+                const data = res.json();
+                data.then((data) => {
+                  alert(
+                    "Data for this ID already exists! \n Book name is - " +
+                      data.foundBook.name
+                  );
+                });
+              }
+            });
+        } catch (error) {
+          console.log("Encountered an error!");
+          console.log(error);
+        }
       }
 
       //-------------------FETCH Data -------------------------------------------------
@@ -303,28 +269,25 @@
           console.log(Error);
         }
 
-        const dbref = ref(db);
-
-        get(child(dbref, "books/" + idbox.value))
-          .then((snapshot) => {
-            if (snapshot.exists()) {
-              console.log(snapshot.val());
-              titlebox.value = snapshot.val().name;
-              authorbox.value = snapshot.val().author;
-              imagebox.value = snapshot.val().image;
-              descbox.value = snapshot.val().description;
-              // party.confetti(fetchBtn, {
-              //   // count: party.variation.range(50000, 40000),
-              //   count: party.variation.range(5000, 5000),
-              // });
-              toastr.info("Book fetched successfully!", "Fetched!");
-            } else {
-              alert("No data found!");
-            }
-          })
-          .catch((error) => {
-            alert("unsuccessful, error. Code 103!");
-          });
+        try {
+          fetch("http://localhost:5000/api/book/" + idbox.value)
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.error) {
+                alert("No book found with this ID!");
+              } else {
+                console.log("This is the Mongo ID Data - ", data);
+                titlebox.value = data.name;
+                authorbox.value = data.author;
+                imagebox.value = data.image;
+                descbox.value = data.description;
+                genrebox.value = data.genre;
+                toastr.info("Book fetched successfully!", "Fetched!");
+              }
+            });
+        } catch (error) {
+          console.log("Error in fetching data from MongoDB");
+        }
       }
 
       //-------------------UPDATE Data -------------------------------------------------
@@ -340,32 +303,33 @@
         }
 
         try {
-          console.log(titlebox.value);
-          console.log(authorbox.value);
-          console.log(imagebox.value);
-          console.log(descbox.value);
-          update(ref(db, "books/" + idbox.value), {
-            name: titlebox.value,
-            author: authorbox.value,
-            image: imagebox.value,
-            // id: idbox.value,
-            description: descbox.value,
+          fetch("http://localhost:5000/api/book/" + idbox.value, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: titlebox.value,
+              author: authorbox.value,
+              image: imagebox.value,
+              description: descbox.value,
+              id: idbox.value,
+              genre: genrebox.value,
+            }),
           })
-            .then(() => {
-              // toastr.success("Data updated successfully");
-              // party.confetti(updateBtn, {
-              //   // count: party.variation.range(50000, 40000),
-              //   count: party.variation.range(500, 500),
-              // });
-              // alert("Data updated successfully");
+            .then((res) => res.json())
+            .then((data) => {
+              console.log("This is the Mongo ID Data - ", data);
               toastr.warning("The book has been updated.", "Updated");
-            })
-            .catch((error) => {
-              alert("unsuccessful, error. Code 104!");
+              titlebox.value = "";
+              authorbox.value = "";
+              imagebox.value = "";
+              descbox.value = "";
+              idbox.value = "";
+              genrebox.value = "";
             });
         } catch (error) {
-          console.log(error);
-          alert(error);
+          console.log("Error in updating data from MongoDB");
         }
       }
 
@@ -382,21 +346,21 @@
         }
 
         try {
-          console.log(titlebox.value);
-          console.log(authorbox.value);
-          console.log(imagebox.value);
-          console.log(descbox.value);
-          remove(ref(db, "books/" + idbox.value))
-            .then(() => {
-              // alert("Data deleted successfully");
-              toastr.error("Book deleted successfully!", "Deleted!");
-            })
-            .catch((error) => {
-              alert("unsuccessful, error. Code 105!");
+          fetch("http://localhost:5000/api/book/" + idbox.value, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log("This is the Mongo ID Data - ", data);
+              titlebox.value = "";
+              authorbox.value = "";
+              imagebox.value = "";
+              descbox.value = "";
+              genrebox.value = "";
+              toastr.error("The book has been deleted.", "Deleted");
             });
         } catch (error) {
-          console.log(error);
-          alert(error);
+          console.log("Error in deleting data from MongoDB");
         }
       }
 
@@ -409,78 +373,56 @@
       //----------Test Data-----------------------------------------------------
       // var listFoot = [];
       $(document).ready(function () {
-        //Making ID consecutive or deciding ID from  our side
-        const dbref = ref(db);
-        get(child(dbref, "books/"))
-          .then((snapshot) => {
-            if (snapshot.exists()) {
-              //Bug 6 starts
-              var data = snapshot.val();
-              const keys = Object.keys(data);
-              const values = Object.values(data);
-              console.log("Halo", data);
-              console.log("Alpha", values);
+        //Bug mongo
+        fetch("http://localhost:5000/api/books")
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            console.log(Object.keys(data));
+            console.log(Object.values(data));
 
-              const ul_footer = document.createElement("ul");
-              ul_footer.setAttribute("class", "footer-ul");
-              ul_footer.setAttribute("class", "list-group");
-              const footer = document.getElementById("footer");
-              footer.appendChild(ul_footer);
-              keys.forEach((key) => {
-                const ali = document.createElement("a");
-                // ali.setAttribute("href", "#" + key); //Bug 5
-                ali.setAttribute("id", key);
-                ali.setAttribute("class", "lulz");
+            const ul_footer_ = document.createElement("ul");
+            ul_footer_.setAttribute("class", "footer-ul");
+            ul_footer_.setAttribute("class", "list-group");
+            const footer_ = document.getElementById("footer");
+            footer_.appendChild(ul_footer_);
 
-                const li = document.createElement("li");
-                li.setAttribute("class", "list-group-item");
-                li.innerHTML = key + ". " + data[key].name;
-                // li.innerHTML = data[key].name;
-                ali.appendChild(li);
+            data.forEach((element, key) => {
+              console.log(element);
 
-                // ul_footer.appendChild(li);
-                ul_footer.appendChild(ali);
-              });
-              var listFoot = document.getElementsByClassName("lulz");
-              listFoot = Array.from(listFoot);
-              listFoot.forEach((item) => {
-                item.addEventListener("click", () => fetchDataFoot(item));
-              });
-              //Bug 6 ends
+              const ali_ = document.createElement("a");
+              // ali_.setAttribute("href", "#");
+              // ali_.setAttribute("class", "list-group-item list-group-item-action");
+              ali_.setAttribute("class", "lolz");
+              ali_.setAttribute("id", element.id);
 
-              // //Bug 1
-              // console.log(snapshot.val());
-              // var obj = snapshot.val();
-              // var objLength = Object.keys(obj).length;
-              // // let idValue = snapshot.val();
-              // let idValue = objLength;
-              // // idValue = idValue.length + 1;
-              // // idValue = idValue.length;
-              // idbox.value = idValue;
-              // //Filling the ID here by ourself
-              // //Bug 1 ends
-            } else {
-              alert("No data found!");
-            }
+              const li_ = document.createElement("li");
+              li_.setAttribute("class", "list-group-item");
+              // li_.innerHTML = key + ". " + data[key].name;
+              li_.innerHTML = data[key].id + ". " + data[key].name;
+              // li.innerHTML = data[key].name;
+              ali_.appendChild(li_);
+              // ali_.setAttribute("id", key);
+              // ali_.setAttribute("class", "lulz");
+              ul_footer_.appendChild(ali_);
+            });
+            var listFoot_ = document.getElementsByClassName("lolz");
+            listFoot_ = Array.from(listFoot_);
+            listFoot_.forEach((item) => {
+              item.addEventListener("click", () => fetchDataFoota(item));
+            });
           })
-          .catch((error) => {
-            alert(
-              "unsuccessful, error. Code 106! Unable to fetch data from the database. Either the database is offline or your internet connection is not available. Contact the Administrator"
-            );
-          });
-        //ID part ends
-      });
+          .catch((err) => console.log(err));
 
-      // Bug 6 starts
-      const fetchDataFoot = (item) => {
-        console.log(item);
-        console.log(item.innerHTML);
-        idbox.value = item.id;
-        fetchData();
-        //navigate to header
-        window.location.href = "#header";
-      };
-      // Bug 6 ends
+        const fetchDataFoota = (item) => {
+          console.log(item.id);
+          console.log(item.innerHTML);
+          idbox.value = item.id;
+          fetchData();
+          //   //navigate to header
+          window.location.href = "#header";
+        };
+      });
     </script>
     <!-- Bug 12 starts -->
     <!-- <script
