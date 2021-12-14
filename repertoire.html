@@ -41,6 +41,7 @@
     <title>Travel Goals</title>
     <link rel="stylesheet" href="shared.css" />
     <link rel="stylesheet" href="repertoire.css" />
+    <!-- <link rel="stylesheet" href="assets/FA/fontawesome-free-5.15.4-web/css/all.min.css"> -->
   </head>
   <body>
     <header>
@@ -208,8 +209,35 @@
               ca2.setAttribute("href", url1);
               ca2.setAttribute("target", "_blank");
 
+              const ca3 = document.createElement("a");
+              const cimg3 = document.createElement("img");
+              cimg3.setAttribute("id", "download")
+              cimg3.setAttribute("src", "images/icons/download.svg");
+              // cimg3.setAttribute("src", "images/icons/download.png");
+              // cimg3.setAttribute("")
+              cimg3.setAttribute("alt", "Download");
+              cimg3.setAttribute("class", "small-icon fas fa-arrow-circle-down");
+
+              ca3.appendChild(cimg3);
+              var url2 = "http://libgen.gs/index.php?req=" + book.name;
+              ca3.setAttribute("href", url2);
+              ca3.setAttribute("target", "_blank");
+
+              const ca4 = document.createElement("a");
+              const cimg4 = document.createElement("img");
+              cimg4.setAttribute("src", "images/icons/down.svg");
+              cimg4.setAttribute("alt", "Donwload");
+              cimg4.setAttribute("class", "small-icon");
+              ca4.appendChild(cimg4);
+              var url3 = "https://sng1lib.org/s/" + book.name;
+              ca4.setAttribute("href", url3);
+              ca4.setAttribute("target", "_blank");
+
+
               div3.appendChild(ca2);
               div3.appendChild(ca1);
+              div3.appendChild(ca3);
+              div3.appendChild(ca4);
 
               const ch2 = document.createElement("h2");
               ch2.textContent = book.name;
