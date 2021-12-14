@@ -184,6 +184,7 @@
     <!--Bug 12 Below-->
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <script type="module">
+      const db = "https://librar-server.herokuapp.com/api";
       //------------------References---------------------------------------
       var titlebox = document.getElementById("Titlebox");
       var authorbox = document.getElementById("Authorbox");
@@ -211,7 +212,8 @@
         }
 
         try {
-          fetch("http://localhost:5000/api/book/create", {
+          // fetch("http://localhost:5000/api/book/create", {
+          fetch(`${db}/book/create`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -270,7 +272,8 @@
         }
 
         try {
-          fetch("http://localhost:5000/api/book/" + idbox.value)
+          // fetch("http://localhost:5000/api/book/" + idbox.value)
+          fetch(`${db}/book/` + idbox.value)
             .then((res) => res.json())
             .then((data) => {
               if (data.error) {
@@ -303,7 +306,8 @@
         }
 
         try {
-          fetch("http://localhost:5000/api/book/" + idbox.value, {
+          // fetch("http://localhost:5000/api/book/" + idbox.value, {
+          fetch(`${db}/book/` + idbox.value, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -346,7 +350,8 @@
         }
 
         try {
-          fetch("http://localhost:5000/api/book/" + idbox.value, {
+          // fetch("http://localhost:5000/api/book/" + idbox.value, {
+          fetch(`${db}/book/` + idbox.value, {
             method: "DELETE",
           })
             .then((res) => res.json())
@@ -374,7 +379,8 @@
       // var listFoot = [];
       $(document).ready(function () {
         //Bug mongo
-        fetch("http://localhost:5000/api/books")
+        // fetch("http://localhost:5000/api/books")
+        fetch(`${db}/books`)
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

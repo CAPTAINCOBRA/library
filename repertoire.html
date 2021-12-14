@@ -123,11 +123,16 @@
         app2.appendChild(containery);
         const cul = document.createElement("ul");
 
-        fetch("http://localhost:5000/api/books")
+        const db = 'https://librar-server.herokuapp.com/api'
+
+        // fetch("http://localhost:5000/api/books")
+        fetch(`${db}/books`)
         .then((res) => res.json())
         .then( (data) => {
             const dutta = data; //Bug 5
             console.log("Data is - ", data);
+
+            console.log("The IDS are - ", dutta.map( (book) => book.id));
             
             const keys = Object.keys(data);
             console.log("Keys are - ", keys);
@@ -150,17 +155,18 @@
             ul_footer.setAttribute("class", "list-group");
             const footer = document.getElementById("footer");
             footer.appendChild(ul_footer);
-            keys.forEach((key) => {
+            data.forEach((bookad,key) => {
               const ali = document.createElement("a");
-              ali.setAttribute("href", "#"+key); //Bug 5
+              ali.setAttribute("href", "#"+bookad.id); //Bug 5
 
               const li = document.createElement("li");
               li.setAttribute("class", "list-group-item");
-              li.innerHTML = key;
+              li.innerHTML = bookad.id;
               ali.appendChild(li);
 
               ul_footer.appendChild(ali);
             });
+            
             //Bug 2 ends
 
             data = books; //Bug 1
@@ -170,7 +176,9 @@
               const cli = document.createElement("li");
               cli.setAttribute("class", "hook"); //Bug 3
               // cli.setAttribute("id", data.indexOf(book)); //Bug 5
-              cli.setAttribute("id", Object.keys(dutta).find(key => dutta[key] === book)); //Bug 5
+              // cli.setAttribute("id", Object.keys(dutta).find(key => dutta[key] === book)); //Bug 5
+              cli.setAttribute("id", book.id); //Bug 5
+              // cli.setAttribute("id", dutta.map( (book) => book.id).find(key => dutta.map((book) => book.id == key))); //Bug 5
               // cli.setAttribute("class", "list-group-item"); //Veryy Big Thing
               const cimg = document.createElement("img");
               const div1 = document.createElement("div");

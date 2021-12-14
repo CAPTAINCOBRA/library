@@ -200,9 +200,11 @@
       container.setAttribute("class", "container");
       appl.appendChild(container);
 
+      const db = "https://librar-server.herokuapp.com/api";
+
       //Express getData
       const getData = () => {
-        fetch("http://localhost:5000/api/books")
+        fetch(`${db}/books`)
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
