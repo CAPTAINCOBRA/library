@@ -119,6 +119,17 @@ h1 {
   color: white;
 }
 
+/* Bug 15 */
+/* .imgDiv {
+  height: auto !important;
+}
+
+.imgDiv img {
+  height: 250px !important;
+  width: 150px !important;
+} */
+/* Bug 15 ends  */
+
 #imgDiv img {
   display: block;
   /* margin: 1rem auto; */
@@ -371,3 +382,25 @@ h1 {
     width: 25px !important;
   }
 }
+
+/* Bug 15 */
+/* .card {
+  transform: translateX(100px);
+  opacity: 0;
+  transition: 150ms;
+}
+.card.show {
+  transform: translateX(0);
+  opacity: 1;
+} */
+
+.hook {
+  transform: translateX(100px);
+  opacity: 0;
+  transition: 150ms;
+}
+.hook.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+/* Bug 15 ends */
