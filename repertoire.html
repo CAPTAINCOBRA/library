@@ -8,6 +8,7 @@
   Bug 12 - 04/12/2021 - Added Bootstrap and jquery dist files to the project.
   Bug 15 - 24/12/2021 - Added Animation to the all books page.
   Bug 16 - 08/01/2022 - Added a tsparticles animation to the all books page.
+  Bug 19 - 08/01/2022 - WCAG: Added Tabbing in sequence.
  -->
 
 <!DOCTYPE html>
@@ -276,6 +277,7 @@
               //Bug 4
               const card = document.createElement("div");
               card.setAttribute("class", "card");
+              card.setAttribute("tabindex", "0"); //Bug 19
               card.classList.add("hook"); //Bug 3
 
               const h1 = document.createElement("h1");

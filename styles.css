@@ -1,3 +1,5 @@
+/* Bug 19 - 08/01/2022 - WCAG: Added Tabbing in sequence. */
+
 #hero {
   height: 800px;
   background-image: url("images/library.jpg");
@@ -58,10 +60,12 @@
   background-color: rgb(255, 230, 0);
 }
 
-#hero-content a:focus {
+/* Bug 19 starts */
+/* #hero-content a:focus {
   outline: none;
   border: 2px solid rgb(255, 23, 0);
-}
+} */
+/* Bug 19 ends */
 
 #highlights {
   padding: 24px;
@@ -327,3 +331,31 @@ header {
 h2 {
   margin: inherit;
 }
+
+/* Bug 19 starts  */
+header nav a:focus {
+  /* outline: 3px solid #84fab0; */
+  outline: 3px solid white;
+  color: floralwhite;
+}
+
+#page-logo a:focus {
+  outline: 3px solid white;
+  /* color: floralwhite; */
+}
+
+#closeBtn:focus {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+#hero-content a:focus {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+/* footer a:focus {
+  outline: 3px solid white !important;
+  outline: 10px auto -webkit-focus-ring-color;
+} */
+/* Bug 19 ends */

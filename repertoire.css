@@ -412,3 +412,14 @@ footer {
   position: relative;
 }
 /* Bug 16 ends  */
+
+/* Bug 19 starts */
+header a:focus {
+  outline: 3px solid white;
+}
+
+#root .card:focus {
+  outline: 5px solid white;
+  outline-offset: 5px;
+}
+/* Bug 19 ends */

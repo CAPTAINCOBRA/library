@@ -12,6 +12,7 @@
   Bug 14 - 04/12/2021 - Added Toastr dist files to the project.
   Bug 17 - 08/01/2022 - Added a Delete confirmation modal
   Bug 18 - 08/01/2022 - ID remained after deleting the book.
+  Bug 19 - 08/01/2022 - WCAG: Added Tabbing in sequence.
  -->
 <!DOCTYPE html>
 <html lang="en">
@@ -237,6 +238,9 @@
     </div>
     <!-- Bug 17 ends -->
 
+    <script src="add-book.js"></script>
+    <!--Bug 19 Includes function focusTrapped() -->
+
     <!--Bug 12 Below-->
     <script src="./assets/jquery-3.5.1.min.js"></script>
     <script type="module">
@@ -253,6 +257,7 @@
       var fetchBtn = document.getElementById("fetchBtn");
       var updateBtn = document.getElementById("updateBtn");
       var deleteBtn = document.getElementById("deleteBtn");
+      var deleteBtnRemoved = document.getElementById("deleteBtnRemoved"); //Bug 19
 
       //-------------------INSERT Data -------------------------------------------------
 
@@ -426,11 +431,20 @@
         }
       }
 
+      // Bug 19 starts
+      function trapFocusModal() {
+        // setTimeout(function () {
+        focusTrapped();
+        // }, 500);
+      }
+      // Bug 19 ends
+
       //---------------Add Event Listener------------------------------------
       instBtn.addEventListener("click", InsertData);
       fetchBtn.addEventListener("click", fetchData);
       updateBtn.addEventListener("click", updateData);
       deleteBtn.addEventListener("click", deleteData);
+      deleteBtnRemoved.addEventListener("click", trapFocusModal); //Bug 19 ends
 
       //----------Test Data-----------------------------------------------------
       // var listFoot = [];
@@ -458,6 +472,7 @@
               // ali_.setAttribute("class", "list-group-item list-group-item-action");
               ali_.setAttribute("class", "lolz");
               ali_.setAttribute("id", element.id);
+              ali_.setAttribute("tabindex", "0"); //Bug 19
 
               const li_ = document.createElement("li");
               li_.setAttribute("class", "list-group-item");
@@ -473,6 +488,7 @@
             listFoot_ = Array.from(listFoot_);
             listFoot_.forEach((item) => {
               item.addEventListener("click", () => fetchDataFoota(item));
+              item.addEventListener("keypress", () => fetchDataFoota(item)); //Bug 19
             });
           })
           .catch((err) => console.log(err));
@@ -506,6 +522,5 @@
     <script src="/assets/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
     <!--Toastr-->
-    <!-- <script src="add-book.js"></script> -->
   </body>
 </html>
