@@ -345,7 +345,7 @@ header nav a:focus {
 }
 
 #closeBtn:focus {
-  outline: 3px solid white;
+  outline: 3px solid black;
   outline-offset: 3px;
 }
 
