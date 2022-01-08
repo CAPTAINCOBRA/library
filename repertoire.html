@@ -7,6 +7,7 @@
   Bug 5 - 31/11/2021 - Added ids to booklist and refs to footer to direct at the correct place in the page.
   Bug 12 - 04/12/2021 - Added Bootstrap and jquery dist files to the project.
   Bug 15 - 24/12/2021 - Added Animation to the all books page.
+  Bug 16 - 08/01/2022 - Added a tsparticles animation to the all books page.
  -->
 
 <!DOCTYPE html>
@@ -45,6 +46,7 @@
     <!-- <link rel="stylesheet" href="assets/FA/fontawesome-free-5.15.4-web/css/all.min.css"> -->
   </head>
   <body>
+    <div id="tsparticles"></div> <!--Bug 16--> 
     <header>
       <div id="page-logo">
         <a class="headerLink" href="/index.html">Bucket List</a>
@@ -346,6 +348,14 @@
       //--------------------------------------------------------------------
 
     </script>
-    <script src="allBooksAnim.js"></script> <!-- Bug 15 -->>
+    <script src="allBooksAnim.js"></script> <!-- Bug 15 -->
+    <!-- Bug 16 starts  -->
+    <!-- first include tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
+
+    <!-- then include jquery wrapper -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-particles"></script>
+    <script src="tsparticles.js"></script>
+    <!-- Bug 16 ends  -->
   </body>
 </html>

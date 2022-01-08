@@ -10,7 +10,8 @@ body {
 }
 
 header {
-  position: static;
+  /* position: static; */
+  position: relative; /*Bug 16*/
 }
 
 header a {
@@ -404,3 +405,10 @@ h1 {
   opacity: 1;
 }
 /* Bug 15 ends */
+
+/* Bug 16 starts  */
+footer {
+  /* position: absolute; */
+  position: relative;
+}
+/* Bug 16 ends  */
