@@ -236,10 +236,11 @@ h1 {
   height: 300px;
   width: 400px;
   /* object-fit: cover; */
-  display: flex;
+  /* display: flex; Bug 20 */
   margin: auto;
   margin-bottom: 40px;
   margin-top: 30px;
+  display: block; /*Bug 20*/
 }
 
 .waiter button {

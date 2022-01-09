@@ -6,6 +6,7 @@
   Bug 11 -04/12/2021 - Make site responsive
   Bug 12 - 04/12/2021 - Added Bootstrap and jquery dist files to the project.
   Bug 19 - 08/01/2022 - WCAG: Added Tabbing in sequence.
+  Bug 21 - 08/01/2022 - Added Typed JS to the site.
  -->
 
 <!DOCTYPE html>
@@ -45,7 +46,7 @@
         <ul>
           <li><a href="/add-book.html">Add Book</a></li>
           <li>
-            <a href="https://contact-ekansh.herokuapp.com/">Contact Us</a>
+            <a href="https://contact-ekansh.herokuapp.com/">Contact</a>
           </li>
           <li><a href="https://github.com/CAPTAINCOBRA">About</a></li>
         </ul>
@@ -142,7 +143,10 @@
       <section id="hero">
         <div id="hero-content">
           <h1>Ekansh's Library</h1>
-          <p>Let's explore the world of books together!</p>
+          <!-- <p>Let's explore the world of books together!</p> Bug 21 -->
+          <p>Let's <span id="typed" class="typing-text"></span></p>
+          <!-- Bug 21 -->
+          <!-- <div id="typed" class="typing-text"></div> -->
           <a href="/repertoire.html">Discover books</a>
           <a id="show" href="#root">Repertoire</a>
         </div>
@@ -264,6 +268,15 @@
 
       document.getElementById("show").addEventListener("click", getData);
     </script>
+
+    <!-- typed.js cdn -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"
+      integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
     <script src="script.js"></script>
   </body>
 </html>

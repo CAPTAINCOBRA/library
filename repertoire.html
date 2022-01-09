@@ -9,6 +9,7 @@
   Bug 15 - 24/12/2021 - Added Animation to the all books page.
   Bug 16 - 08/01/2022 - Added a tsparticles animation to the all books page.
   Bug 19 - 08/01/2022 - WCAG: Added Tabbing in sequence.
+  Bug 20 - 09/01/2022 - Added custom Books Loader.
  -->
 
 <!DOCTYPE html>
@@ -45,6 +46,7 @@
     <link rel="stylesheet" href="shared.css" />
     <link rel="stylesheet" href="repertoire.css" />
     <!-- <link rel="stylesheet" href="assets/FA/fontawesome-free-5.15.4-web/css/all.min.css"> -->
+    <link rel="stylesheet" href="waiter.css"> <!-- Bug 20 -->
   </head>
   <body>
     <div id="tsparticles"></div> <!--Bug 16--> 
@@ -61,7 +63,7 @@
             <a class="headerLink" href="/add-book.html">Add Book</a>
           </li>
           <li>
-            <a class="headerLink" href="https://contact-ekansh.herokuapp.com/">Contact Us</a>
+            <a class="headerLink" href="https://contact-ekansh.herokuapp.com/">Contact</a>
           </li>
           <li><a class="headerLink" href="https://github.com/CAPTAINCOBRA">About</a></li>
           <!-- <li><a id="toggle">Toggle Theme</a></li> --> <!-- Bug 3 -->
@@ -117,9 +119,24 @@
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Loading...
       </button>`;
+// Bug 20 starts
+      let loader2 = `
+      <div class="bookshelf_wrapper">
+        <ul class="books_list">
+          <li class="book_item first"></li>
+          <li class="book_item second"></li>
+          <li class="book_item third"></li>
+          <li class="book_item fourth"></li>
+          <li class="book_item fifth"></li>
+          <li class="book_item sixth"></li>
+        </ul>
+        <div class="shelf"></div>
+      </div>`;
+// Bug 20 ends 
         const waiter = document.createElement("div");
         waiter.setAttribute("class", "waiter");
-        waiter.innerHTML = loader;
+        // waiter.innerHTML = loader; //Bug 20
+        waiter.innerHTML = loader2; //Bug 20
         // waiter.appendChild(loader); //Wont work because it is a string
         app2.appendChild(waiter);
 

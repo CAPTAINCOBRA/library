@@ -36,3 +36,14 @@ function focusTrapped() {
     firstFocusableElement.focus();
   }, 500);
 }
+
+// Bug 19 starts
+
+(function () {
+  const pageLogo = document.querySelector("#page-logo>a");
+  // setTimeout(() => {
+  pageLogo.focus();
+  // }, 200);
+})();
+
+// Bug 19 ends

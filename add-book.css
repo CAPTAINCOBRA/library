@@ -327,3 +327,31 @@ body {
   }
 }
 /* Bug 11 ends  */
+
+/* Bug 19 starts */
+
+header a:focus {
+  /* outline: 3px solid white; */
+  outline: 3px solid #ffeb3b;
+}
+
+#page-logo a:focus {
+  outline: 3px solid #ffeb3b;
+}
+
+.lolz:focus {
+  outline: 3px solid white;
+}
+
+.form-container input:focus {
+  /* outline: 3px solid white; */
+  outline: 3px solid #ffeb3b;
+  outline-offset: 3px;
+}
+
+.buttonTray button:focus {
+  /* outline: 3px solid #ffeb3b; */
+  outline: 3px solid inherit;
+  outline-offset: 3px;
+}
+/* Bug 19 ends  */
