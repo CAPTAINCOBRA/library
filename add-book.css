@@ -80,9 +80,9 @@ body {
   filter: brightness(0.8);
 }
 
-.pair {
-  /* display: flex; */
-}
+/* .pair { */
+/* display: flex; */
+/* } */
 
 #instBtn {
   background-color: brown;

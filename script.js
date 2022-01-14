@@ -21,3 +21,19 @@ var typed = new Typed(".typing-text", {
 });
 // <!-- typed js effect ends -->
 // Bug 21 ends here
+
+// Bug 22 starts -  Animated style to Ekansh's Library Heading
+$(function () {
+  $(".intro").addClass("go");
+
+  $(".reload").click(function () {
+    $(".intro")
+      .removeClass("go")
+      .delay(200)
+      .queue(function (next) {
+        $(".intro").addClass("go");
+        next();
+      });
+  });
+});
+// Bug 22 ends

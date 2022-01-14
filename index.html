@@ -7,6 +7,7 @@
   Bug 12 - 04/12/2021 - Added Bootstrap and jquery dist files to the project.
   Bug 19 - 08/01/2022 - WCAG: Added Tabbing in sequence.
   Bug 21 - 08/01/2022 - Added Typed JS to the site.
+  Bug 22 - Added Animated style to Ekansh's Library Heading
  -->
 
 <!DOCTYPE html>
@@ -36,6 +37,8 @@
     <title>Libra</title>
     <link rel="stylesheet" href="shared.css" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="textStyle.css" />
+    <!--Bug 22-->
   </head>
   <body class="lang">
     <header>
@@ -142,7 +145,36 @@
 
       <section id="hero">
         <div id="hero-content">
-          <h1>Ekansh's Library</h1>
+          <!-- Bug 22 starts  -->
+          <svg class="intro" viewbox="-20 0 220 36">
+            <text
+              text-anchor="start"
+              x="10"
+              y="30"
+              class="text text-stroke"
+              clip-path="url(#text1)"
+            >
+              Ekansh's Library
+            </text>
+            <text
+              text-anchor="start"
+              x="10"
+              y="30"
+              class="text text-stroke text-stroke-2"
+              clip-path="url(#text1)"
+            >
+              Ekansh's Library
+            </text>
+            <defs>
+              <clipPath id="text1">
+                <text text-anchor="start" x="10" y="30" class="text">
+                  Ekansh's Library
+                </text>
+              </clipPath>
+            </defs>
+          </svg>
+          <!-- <h1>Ekansh's Library</h1> -->
+          <!-- Bug 22 ends  -->
           <!-- <p>Let's explore the world of books together!</p> Bug 21 -->
           <p>Let's <span id="typed" class="typing-text"></span></p>
           <!-- Bug 21 -->

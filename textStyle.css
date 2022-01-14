@@ -1,0 +1,52 @@
+/* This file was added as part of Bug 22 -  Animated style to Ekansh's Library Heading*/
+/* Bug 22 starts */
+svg.intro {
+  max-width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: 45%;
+}
+svg.intro .text {
+  display: none;
+}
+svg.intro.go .text {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  display: block;
+}
+svg.intro.go .text-stroke {
+  fill: none;
+  /* stroke: #51256f; */
+  stroke: #eff30c;
+  stroke-width: 2.8px;
+  stroke-dashoffset: -900;
+  stroke-dasharray: 900;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+  animation: dash 2.5s ease-in-out forwards;
+}
+svg.intro.go .text-stroke:nth-child(2) {
+  animation-delay: 0.3s;
+}
+svg.intro.go .text-stroke:nth-child(3) {
+  animation-delay: 0.9s;
+}
+svg.intro.go .text-stroke-2 {
+  /* stroke: #f6bdfa; */
+  stroke: #fff;
+  animation-delay: 1.2s;
+}
+svg.intro.go .text-stroke:nth-child(5) {
+  animation-delay: 1.5s;
+}
+svg.intro.go .text-stroke:nth-child(6) {
+  animation-delay: 1.8s;
+}
+@keyframes dash {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+/* Bug 22 ends  */
