@@ -37,3 +37,15 @@ $(function () {
   });
 });
 // Bug 22 ends
+
+// <!-- Bug 23 tilt js effect starts -->
+VanillaTilt.init(document.querySelectorAll(".tilt"), {
+  max: 25,
+  scale: 1.2,
+});
+
+VanillaTilt.init(document.querySelectorAll(".tiltHero"), {
+  max: 10,
+  scale: 1.1,
+});
+// <!-- Bug 23 tilt js effect ends -->

@@ -8,6 +8,7 @@
   Bug 19 - 08/01/2022 - WCAG: Added Tabbing in sequence.
   Bug 21 - 08/01/2022 - Added Typed JS to the site.
   Bug 22 - Added Animated style to Ekansh's Library Heading
+  Bug 23 - 14/01/2022 - Added tilt effect
  -->
 
 <!DOCTYPE html>
@@ -38,7 +39,7 @@
     <link rel="stylesheet" href="shared.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="textStyle.css" />
-    <!--Bug 22-->
+    <!--Bug 22 textStyle-->
   </head>
   <body class="lang">
     <header>
@@ -144,7 +145,8 @@
       </div>
 
       <section id="hero">
-        <div id="hero-content">
+        <div id="hero-content" class="tiltHero">
+          <!--Bug 23 tilt-->
           <!-- Bug 22 starts  -->
           <svg class="intro" viewbox="-20 0 220 36">
             <text
@@ -176,17 +178,23 @@
           <!-- <h1>Ekansh's Library</h1> -->
           <!-- Bug 22 ends  -->
           <!-- <p>Let's explore the world of books together!</p> Bug 21 -->
-          <p>Let's <span id="typed" class="typing-text"></span></p>
+          <p class="tiltHeroInner">
+            <!--Bug 23 tilt-->
+            Let's <span id="typed" class="typing-text"></span>
+          </p>
           <!-- Bug 21 -->
           <!-- <div id="typed" class="typing-text"></div> -->
-          <a href="/repertoire.html">Discover books</a>
-          <a id="show" href="#root">Repertoire</a>
+          <a class="tiltHeroInner" href="/repertoire.html">Discover books</a
+          ><!--Bug 23 tilt-->
+          <a class="tiltHeroInner" id="show" href="#root">Repertoire</a
+          ><!--Bug 23 tilt-->
         </div>
       </section>
       <section id="highlights">
         <h2>Highlights</h2>
         <ul id="destinations">
-          <li class="destination">
+          <li class="destination tilt">
+            <!--Bug 23 tilt-->
             <img
               src="images/fav-books/famous-five.jpg"
               alt="Famous Five By Enid Blyton"
@@ -194,7 +202,8 @@
             />
             <p>Famous <strong>Five</strong></p>
           </li>
-          <li class="destination">
+          <li class="destination tilt">
+            <!--Bug 23 tilt-->
             <img
               src="images/fav-books/angDem.jpg"
               alt="Angels & Demons by Dan Brown"
@@ -202,7 +211,8 @@
             />
             <p>Angels & <strong>Demons</strong></p>
           </li>
-          <li class="destination">
+          <li class="destination tilt">
+            <!--Bug 23 tilt-->
             <img
               src="images/fav-books/camelClub.jpg"
               alt="Camel Club By David Baldacci"
@@ -216,12 +226,14 @@
     <div id="root"></div>
     <footer>
       <ul>
-        <li>
+        <li class="tilt">
+          <!--Bug 23 tilt-->
           <a href="https://www.instagram.com">
             <img src="images/icons/insta.png" alt="Instagram logo"
           /></a>
         </li>
-        <li>
+        <li class="tilt">
+          <!--Bug 23 tilt-->
           <a href="https://www.facebook.com">
             <img src="images/icons/facebook.png" alt="Facebook logo"
           /></a>
@@ -305,6 +317,14 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"
       integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Bug 23 tilt.js CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"
+      integrity="sha512-SttpKhJqONuBVxbRcuH0wezjuX+BoFoli0yPsnrAADcHsQMW8rkR84ItFHGIkPvhnlRnE2FaifDOUw+EltbuHg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>

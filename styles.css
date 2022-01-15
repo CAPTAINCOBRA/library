@@ -366,3 +366,13 @@ header nav a:focus {
   font-weight: 600;
   padding: 1rem 0;
 }
+/* Bug 23 tilt starts */
+.tiltHero {
+  transform-style: preserve-3d;
+  /* transform-perspective: 1000px; */
+}
+
+.tiltHeroInner {
+  transform: translateZ(20px);
+}
+/* Bug 23 tilt ends */
