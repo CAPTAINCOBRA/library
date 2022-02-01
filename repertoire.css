@@ -399,7 +399,7 @@ h1 {
 .hook {
   transform: translateX(100px);
   opacity: 0;
-  transition: 150ms;
+  transition: 250ms;
 }
 .hook.show {
   transform: translateX(0);

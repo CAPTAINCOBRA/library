@@ -1,4 +1,5 @@
 // Bug 15 - 24/12/2021 - Added Animation to the all books page.
+// Bug 24 - 01/02/2022 - Fixed the all books not visible on first few loads.
 
 // const hook = document.getElementsByClassName("hook");
 // hook.forEach(function (item) {
@@ -10,6 +11,10 @@
 
 setTimeout(() => {
   const cards = document.querySelectorAll(".hook");
+
+  const hook = document.getElementsByClassName("hook");
+  hook[0].classList.add("show");
+  hook[1].classList.add("show");
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -23,7 +28,7 @@ setTimeout(() => {
     },
     {
       //   threshold: 1,
-      threshold: 0.5,
+      threshold: 0.75,
     }
   );
 
@@ -33,3 +38,8 @@ setTimeout(() => {
 
   //   observer.observe(cards[0]);
 }, 1000);
+
+// Select the first child of the hook class and add a class of show to it. This will make the first card visible. The other cards will be hidden.
+// const hook = document.getElementsByClassName("hook");
+// hook[0].classList.add("show");
+// hook[1].classList.add("show");
