@@ -326,7 +326,15 @@
 
       $(document).ready(function () {
         console.log("ready!");
-        getData();
+        getData()
+          .then(function (data) { //Bug 24 starts
+          console.log(data);
+          const hook = document.getElementsByClassName("hook");
+          hook[0].classList.add("show");
+          hook[1].classList.add("show");
+        });
+        // Bug 24 ends
+
       });
 
       // const changeTheme = () => {
