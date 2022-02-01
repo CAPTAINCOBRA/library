@@ -12,9 +12,11 @@
 setTimeout(() => {
   const cards = document.querySelectorAll(".hook");
 
+  // Bug 24 starts
   const hook = document.getElementsByClassName("hook");
   hook[0].classList.add("show");
   hook[1].classList.add("show");
+  // Bug 24 ends
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -43,3 +45,11 @@ setTimeout(() => {
 // const hook = document.getElementsByClassName("hook");
 // hook[0].classList.add("show");
 // hook[1].classList.add("show");
+
+// Bug 24 starts
+setTimeout(() => {
+  const hook = document.getElementsByClassName("hook");
+  hook[0].classList.add("show");
+  hook[1].classList.add("show");
+}, 2000);
+// Bug 24 ends
