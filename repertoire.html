@@ -11,6 +11,7 @@
   Bug 19 - 08/01/2022 - WCAG: Added Tabbing in sequence.
   Bug 20 - 09/01/2022 - Added custom Books Loader.
   Bug 24 - 01/02/2022 - Fixed the all books not visible on first few loads.
+  Bug 25 - 01/02/2022 - Added a Search Option. Author, Title, Genre.
  -->
 
 <!DOCTYPE html>
@@ -48,6 +49,9 @@
     <link rel="stylesheet" href="repertoire.css" />
     <!-- <link rel="stylesheet" href="assets/FA/fontawesome-free-5.15.4-web/css/all.min.css"> -->
     <link rel="stylesheet" href="waiter.css"> <!-- Bug 20 -->
+    <script src="allBooksAnim.js" defer></script> <!-- Bug 24 -->
+
+    <script src="inputScript.js" defer></script>
   </head>
   <body>
     <div id="tsparticles"></div> <!--Bug 16--> 
@@ -73,6 +77,54 @@
       </nav>
     </header>
     <main>
+      <!-- Bug 25 starts  -->
+      <div class="row search-group mb-3">
+      <div class="input-group  search-wrapper form-outline col">
+        <input
+          type="search"
+          class="form-control rounded search-input"
+          placeholder="Search Book by Title"
+          aria-label="Search"
+          aria-describedby="search-addon"
+          id="search"
+          data-search
+          col-5
+        />
+      </div>
+      <div class="input-group  search-wrapper form-outline col">
+        <input
+          type="search"
+          class="form-control rounded search-input"
+          placeholder="Search Book by Author"
+          aria-label="Search"
+          aria-describedby="search-addon"
+          id="author-search"
+          author-search
+          col-5
+        />
+      </div>
+      <div class="input-group  search-wrapper form-outline col">
+        <input
+          type="search"
+          class="form-control rounded search-input"
+          placeholder="Search Book by Genre"
+          aria-label="Search"
+          aria-describedby="search-addon"
+          id="genre-search"
+          genre-search
+          col-5
+          title="Adventure, Fantasy, Mystery, Romance, Science Fiction, Thriller, Western"
+        />
+      </div>
+    </div>
+      <div
+        class="no-result-found display-4"
+        style="display: none; justify-content: center"
+      >
+        <img src="/images/not-found.png" alt="No Result Found!" style="z-index: 1;" />
+      </div>
+      <!-- Bug 25 ends  -->
+
       <div id="rooty"></div>
     </main>
     <div id="root"></div>
@@ -263,9 +315,17 @@
 
               const ch2 = document.createElement("h2");
               ch2.textContent = book.name;
+              ch2.setAttribute("class", "book-title"); //Bug 25
 
               const ch4 = document.createElement("h4");
               ch4.textContent = book.author;
+              // Bug 25 starts 
+              ch4.setAttribute("class", "book-author");
+
+              const ch5 = document.createElement("h5");
+              ch5.textContent = book.genre;
+              ch5.setAttribute("class", "book-genre");
+              // Bug 25 ends 
 
               // ca.textContent = "Buy";
               // ca.setAttribute("href", book.link);
@@ -280,6 +340,7 @@
 
               div2.appendChild(ch2);
               div2.appendChild(ch4);
+              div2.appendChild(ch5); //Bug 25
               div2.appendChild(cp);
               div1.appendChild(div2);
               div1.appendChild(div3);
@@ -374,7 +435,7 @@
       //--------------------------------------------------------------------
 
     </script>
-    <script src="allBooksAnim.js"></script> <!-- Bug 15 -->
+    <!-- <script src="allBooksAnim.js"></script> Bug 15 -->
     <!-- Bug 16 starts  -->
     <!-- first include tsParticles -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>

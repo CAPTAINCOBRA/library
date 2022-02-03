@@ -4,6 +4,7 @@ html {
 
 body {
   background: linear-gradient(30deg, rgb(77, 77, 77), rgb(58, 58, 58));
+  overflow-x: hidden;
 }
 #page-logo a {
   color: rgb(183, 230, 235);
@@ -91,8 +92,19 @@ main li img {
   padding-left: 2.5rem;
   font-family: monospace;
   font-style: italic;
-  margin: 1rem 0;
+  margin: 1rem 0; /*TODO:*/
 }
+
+/* Bug 25 */
+#rooty .item-content h5 {
+  margin: 0;
+  padding-left: 2.5rem;
+  font-family: monospace;
+  font-style: italic;
+  font-size: small;
+  /* margin: 1rem 0; */
+}
+/* Bug 25 */
 
 .actions {
   text-align: right;
@@ -140,6 +152,7 @@ h1 {
 .container p {
   padding: 0 2.5rem 2.5rem;
   margin: 0;
+  padding-bottom: 0px;
 }
 
 .container {
@@ -424,3 +437,28 @@ header a:focus {
   outline-offset: 5px;
 }
 /* Bug 19 ends */
+
+/* Bug 25 starts  */
+.search-wrapper {
+  flex-flow: column;
+  align-items: center;
+}
+
+.search-input {
+  width: 50% !important;
+  background-color: black;
+  color: white;
+  border: 2px solid wheat;
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+
+.search-group {
+  overflow-x: hidden;
+}
+
+.form-control:focus {
+  background-color: black;
+  color: white;
+}
+/* Bug 25 ends  */
